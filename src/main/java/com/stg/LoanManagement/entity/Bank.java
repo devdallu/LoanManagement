@@ -1,24 +1,20 @@
 package com.stg.LoanManagement.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import lombok.Data;
-
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
-@Data
-@Table(name = "bank")
 public class Bank {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bankId;
+    private Long id;
+    private String bankName;
+    private String branchName;
+    private double interestRate;
+    private int duration;
+    private String address;
+    private String contactInformation;
+    private double totalAssets;
+    private String services;
+    private String operatingHours;
 
-    private  String bankName;
-    private  String bankLocation;
-    private String website;
-
-    @OneToMany(mappedBy = "bank",cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "bank-loan")
-    private List<Loan> loans;
 }

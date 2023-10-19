@@ -1,30 +1,22 @@
 package com.stg.LoanManagement.entity;
 
-
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Date;
-
 @Entity
-@Data
-@Table(name = "loanStatus")
 public class LoanStatus {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long statusId;
-    private  String Status;
-    private  String statusDate;
-    private  double currentBalance;
-    private Date nextPaymentDueDate;
+    private Long id;
+    private String loanStatus;
+    private double totalAmount;
+    private double interestRate;
+    private int duration;
+    private String paymentMethod;
+    private Date startDate;
+    private Date endDate;
+    private double latePaymentPenalty;
+    private String paymentHistory;
     private int gracePeriod;
-
-//    @OneToOne
-//    @JoinColumn(name = "loan_id")
-//    private  Loan loan;
-
-   @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
-    private  Customer customer;
-
+    private String loanOfficer;
 }
