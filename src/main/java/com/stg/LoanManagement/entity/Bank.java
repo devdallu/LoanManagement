@@ -1,20 +1,24 @@
 package com.stg.LoanManagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.List;
 
 @Entity
+@Data
 public class Bank {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long bankId;
     private String bankName;
     private String branchName;
     private double interestRate;
     private int duration;
     private String address;
-    private String contactInformation;
-    private double totalAssets;
-    private String services;
-    private String operatingHours;
+
+
+
 
 }

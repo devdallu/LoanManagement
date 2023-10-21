@@ -1,12 +1,15 @@
 package com.stg.LoanManagement.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Date;
 @Entity
-public class LoanStatus {
+public class LoanRequest {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String loanStatus;
     private double totalAmount;
@@ -15,8 +18,5 @@ public class LoanStatus {
     private String paymentMethod;
     private Date startDate;
     private Date endDate;
-    private double latePaymentPenalty;
-    private String paymentHistory;
-    private int gracePeriod;
     private String loanOfficer;
 }

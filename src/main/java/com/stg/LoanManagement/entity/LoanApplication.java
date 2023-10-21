@@ -1,18 +1,22 @@
 package com.stg.LoanManagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class Loan {
+public class LoanApplication {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String loanType;
     private double loanAmount;
-    private double income;
-    private String repaymentSchedule;
+    private double applicantIncome;
     private String purpose;
-    private String collateral;
     private String loanTermType;
     private int creditScore;
+
+    @ManyToOne
+    @JoinColumn(name = "bank_id")
+    private  Bank bank;
+
+
 }

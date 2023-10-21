@@ -1,18 +1,19 @@
 package com.stg.LoanManagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "customer")
 public class Customer {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long customerId;
     private String name;
     private String email;
     private String phoneNumber;
@@ -20,7 +21,9 @@ public class Customer {
     private String aadhaarCard;
     private String address;
     private Date dateOfBirth;
-    private String gender;
-    private String nationality;
-    private String employmentStatus;
+
+
+
+
+
 }
