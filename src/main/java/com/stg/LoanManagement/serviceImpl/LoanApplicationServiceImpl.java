@@ -6,6 +6,8 @@ import com.stg.LoanManagement.service.LoanApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LoanApplicationServiceImpl implements LoanApplicationService {
     private LoanApplicationRepository loanApplicationRepository;
@@ -17,5 +19,10 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
     @Override
     public LoanApplication InsertLoanApplication(LoanApplication loanApplication) {
         return loanApplicationRepository.save(loanApplication);
+    }
+
+    @Override
+    public List<LoanApplication> getAllLoanApplication() {
+        return loanApplicationRepository.findAll();
     }
 }

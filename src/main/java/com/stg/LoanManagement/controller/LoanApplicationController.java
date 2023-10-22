@@ -6,10 +6,9 @@ import com.stg.LoanManagement.service.LoanApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/loanApplication")
@@ -23,5 +22,10 @@ public class LoanApplicationController {
     @PostMapping("/create-loanApplication")
     public ResponseEntity<LoanApplication> createLoanApplication(@RequestBody LoanApplication loanApplication){
         return  new ResponseEntity<>(loanApplicationService.InsertLoanApplication(loanApplication), HttpStatus.OK);
+    }
+
+    @GetMapping("/loanApplicationList")
+    public  ResponseEntity<List<LoanApplication>> getAllLoanApplication(){
+       return  new ResponseEntity<>(loanApplicationService.getAllLoanApplication(),HttpStatus.OK);
     }
 }

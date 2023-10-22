@@ -6,6 +6,8 @@ import com.stg.LoanManagement.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BankServiceImpl implements BankService {
 
@@ -19,5 +21,9 @@ public class BankServiceImpl implements BankService {
     @Override
     public Bank InsertBank(Bank bank) {
         return bankRepository.save(bank);
+    }
+    @Override
+    public List<Bank> getBankList() {
+        return bankRepository.findAll();
     }
 }

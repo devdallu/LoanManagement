@@ -1,6 +1,7 @@
 package com.stg.LoanManagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.stg.LoanManagement.constant.LoanStatusEnum;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,16 +19,23 @@ public class LoanApplication {
     private String purpose;
     private Date requestDateTime;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference(value = "customer")
     @JoinColumn(name = "customer_id",referencedColumnName = "customerId")
     private  Customer customer;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "bank")
     @JoinColumn(name = "bank_id",referencedColumnName = "bankId")
     private Bank bank;
 
     @OneToOne(mappedBy = "loanApplication",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "status")
     private LoanStatus loanStatus;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "loan")
+    @JoinColumn(name = "loanType", referencedColumnName = "id")
+    private LoanType loanType;
 
 }
