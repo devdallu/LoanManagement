@@ -22,8 +22,8 @@ public class Customer {
     private String address;
     private Date dateOfBirth;
 
-
-
-
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch =  FetchType.LAZY)
+    @JsonManagedReference(value = "customer")
+    private  List<LoanApplication> loanApplications;
 
 }

@@ -1,22 +1,33 @@
 package com.stg.LoanManagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.stg.LoanManagement.constant.LoanStatusEnum;
 import jakarta.persistence.*;
+import lombok.Data;
 
+import java.util.Date;
 @Entity
+@Data
+@Table(name = "loanApplication")
 public class LoanApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String loanType;
+    private Long loanApplicationId;
     private double loanAmount;
-    private double applicantIncome;
+    private double salary;
     private String purpose;
-    private String loanTermType;
-    private int creditScore;
+    private Date requestDateTime;
 
     @ManyToOne
-    @JoinColumn(name = "bank_id")
-    private  Bank bank;
+    @JsonBackReference(value = "customer")
+    @JoinColumn(name = "customer_id",referencedColumnName = "customerId")
+    private  Customer customer;
 
+    @OneToOne
+    @JoinColumn(name = "bank_id",referencedColumnName = "bankId")
+    private Bank bank;
+
+    @OneToOne(mappedBy = "loanApplication",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private LoanStatus loanStatus;
 
 }
