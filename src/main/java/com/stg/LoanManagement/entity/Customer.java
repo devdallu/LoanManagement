@@ -1,9 +1,6 @@
 package com.stg.LoanManagement.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
@@ -38,6 +35,8 @@ public class Customer {
     private Date dateOfBirth;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+
     private List<LoanApplication> loanApplications;
 
 }
