@@ -15,6 +15,7 @@ public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bankId;
+
     @NotBlank(message = "Bank name is required")
     private String bankName;
     @NotBlank(message = "Branch name is required")
@@ -22,13 +23,8 @@ public class Bank {
     @NotBlank(message = "Address is required")
     private String address;
 
-    @JsonManagedReference(value = "bank_loanType")
-    @OneToMany(mappedBy = "bankRef",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<LoanType> loanTypes;
 
-    @OneToOne(mappedBy = "bank",fetch = FetchType.EAGER)
-    @JsonManagedReference(value = "bank")
-    private  LoanApplication loanApplication;
+
 
 
 }

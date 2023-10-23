@@ -10,4 +10,6 @@ public interface BankService {
     public Bank InsertBank(Bank bank);
 
     public List<Bank> getBankList();
+
+    public Object assignCustomerToBank(Long bankId, Long customerID);
 }

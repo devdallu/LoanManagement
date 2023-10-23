@@ -1,7 +1,9 @@
 package com.stg.LoanManagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
@@ -14,6 +16,8 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "customer")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
+
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +37,7 @@ public class Customer {
     @Past(message = "Date of birth must be in the past")
     private Date dateOfBirth;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch =  FetchType.LAZY)
-    @JsonManagedReference(value = "customer")
-    private  List<LoanApplication> loanApplications;
-
-
+    @OneToMany(mappedBy = "customer")
+    private List<LoanApplication> loanApplications;
 
 }

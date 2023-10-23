@@ -11,19 +11,8 @@ import lombok.Data;
 public class LoanType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-//    @Enumerated(EnumType.STRING)
-    private LoanTypeEnum loanTypeMode;
+    private Long loanTypeId;
+    private String loanTypeMode;
     private double rateOfInterest;
-    private double loanDuration;
 
-
-    @ManyToOne
-    @JoinColumn(name = "bank_id",referencedColumnName = "bankId")
-    @JsonBackReference(value = "bank_loanType")
-    private  Bank bankRef;
-
-  @OneToOne
-  @JsonManagedReference(value = "loan")
-  private LoanApplication loanApplication;
 }
