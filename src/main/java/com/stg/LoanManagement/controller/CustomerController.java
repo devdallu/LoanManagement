@@ -1,6 +1,8 @@
 package com.stg.LoanManagement.controller;
 
 
+import com.stg.LoanManagement.dto.CustomerDtos;
+import com.stg.LoanManagement.dto.CustomerDtosItem;
 import com.stg.LoanManagement.entity.Customer;
 import com.stg.LoanManagement.responsehandler.ResponseHandler;
 import com.stg.LoanManagement.service.CustomerService;
@@ -17,6 +19,7 @@ import java.util.List;
 public class CustomerController {
     private CustomerService customerService;
     private ResponseHandler responseHandler;
+
     @Autowired
     public CustomerController(CustomerService customerService, ResponseHandler responseHandler) {
         this.customerService = customerService;
@@ -29,7 +32,7 @@ public class CustomerController {
 
 
     @GetMapping("/customerList")
-    public  ResponseEntity<List<Customer>> getCustomerList(){
+    public  ResponseEntity<List<?>> getCustomerList(){
         return  new ResponseEntity<>(customerService.getCustomerList(),HttpStatus.OK);
     }
 }
